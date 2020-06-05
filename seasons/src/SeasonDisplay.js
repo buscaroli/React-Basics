@@ -1,6 +1,17 @@
 import React from 'react'
 
 
+const seasonConfig = {
+    summer: {
+        text: 'Gosh, it\'s HOT here!',
+        iconName: 'sun'
+    },
+    winter: {
+        text: 'BRRRR, I\'m FREEZING!',
+        iconName: 'snowflake'
+    }
+}
+
 const getSeason = (lat, month) => {
     if (month > 2 && month < 9) {
         // eslint-disable-next-line no-unused-expressions
@@ -11,13 +22,12 @@ const getSeason = (lat, month) => {
 
 const SeasonDisplay = props => {
     const season = getSeason(props.lat, new Date().getMonth())
-    const message = season === 'summer' ? 'Gosh it\'s HOT today!' : 'Brrrr I\'m freezing here!'
-    const icon = season === 'summer' ? 'sun' : 'snowflake'
+    let { text, iconName } = seasonConfig[season]
     return(
         <div>
-            <i className={`${icon} icon`} />
-            <h1>{message}</h1>
-            <i className={`${icon} icon`} />
+            <i className={`${iconName} icon`} />
+            <h1>{text}</h1>
+            <i className={`${iconName} icon`} />
         </div>
     )
 }
